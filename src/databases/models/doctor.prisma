@@ -1,0 +1,29 @@
+model Doctor {
+  id                BigInt         @id @default(autoincrement())
+  firstName         String         @map("first_name")
+  middleName        String?        @map("middle_name")
+  lastName          String         @map("last_name")
+  profilePhoto      String?        @map("profile_photo")
+  gender            Gender
+  dateOfBirth       DateTime       @map("date_of_birth") @db.Date
+  preferedLanguages String         @map("prefered_languages")
+  expereince        Int            @default(0)
+  charges           Float
+  slotDuration      Int            @default(15)
+  credentialId      BigInt         @unique @map("credential_id")
+  hospitalId        BigInt         @map("hospital_id")
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  degree            Degree[]
+  leaves            Leaves[]
+  schedule          Schedule[]
+  speciality        Speciality[]
+  credential        UserCredential @relation(fields: [credentialId], references: [id])
+  hospital          Hospital       @relation(fields: [hospitalId], references: [id])
+  appointment       Appointment[]
+  review            Review[]
+  meeting Meeting[]
+  calendarConnection CalendarConnection?
+
+  @@map("doctors")
+}
