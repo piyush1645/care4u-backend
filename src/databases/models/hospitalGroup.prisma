@@ -1,0 +1,12 @@
+model HospitalGroup {
+  id        BigInt     @id @default(autoincrement())
+  name      String
+  logo      String?
+  isActive  Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  admin     Admin?
+  hospital  Hospital[]
+
+  @@map("hospital_groups")
+}
