@@ -1,0 +1,36 @@
+model Patient {
+  id           BigInt         @id @default(autoincrement())
+  firstName    String         @map("first_name")
+  middleName   String?        @map("middle_name")
+  lastName     String         @map("last_name")
+  profilePhoto String?        @map("profile_photo")
+  gender       Gender
+  dateOfBirth  DateTime       @map("date_of_birth") @db.Date
+  bloodGroup   BloodGroup     @map("blood_group")
+  credentialId BigInt         @unique @map("credential_id")
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  appointment  Appointment[]
+  credential   UserCredential @relation(fields: [credentialId], references: [id])
+  review       Review[]
+  meeting Meeting[]
+
+  @@map("patients")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum BloodGroup {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+}
