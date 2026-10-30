@@ -1,0 +1,20 @@
+export const ROLE = {
+  ADMIN: 'ADMIN',
+  STAFF: 'STAFF',
+  DOCTOR: 'DOCTOR',
+  PATIENT: 'PATIENT',
+  SUPER_ADMIN: 'SUPER_ADMIN',
+};
+
+
+export const DAYS = [ 
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY"
+];
+
+export const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
