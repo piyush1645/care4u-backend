@@ -1,0 +1,17 @@
+model Staff {
+  id           BigInt         @id @default(autoincrement())
+  firstName    String         @map("first_name")
+  middleName   String?        @map("middle_name")
+  lastName     String         @map("last_name")
+  profilePhoto String?        @map("profile_photo")
+  gender       Gender
+  dateOfBirth  DateTime       @map("date_of_birth") @db.Date
+  credentialId BigInt         @unique @map("credential_id")
+  hospitalId   BigInt         @map("hospital_id")
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  credential   UserCredential @relation(fields: [credentialId], references: [id])
+  hospital     Hospital       @relation(fields: [hospitalId], references: [id])
+
+  @@map("staffs")
+}
