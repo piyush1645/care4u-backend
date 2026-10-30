@@ -1,0 +1,10 @@
+model Speciality {
+  id        BigInt   @id @default(autoincrement())
+  name      String
+  doctorId  BigInt   @map("doctor_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+
+  @@map("doctor_specialities")
+}
