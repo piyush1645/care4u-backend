@@ -1,0 +1,9 @@
+model SpecialityList {
+    id BigInt @id @default(autoincrement())
+    specialityName String @map("speciality_name")
+
+    createdAt            DateTime           @default(now())
+    updatedAt            DateTime           @updatedAt
+
+    @@map("speciality_list")
+}
