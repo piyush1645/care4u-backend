@@ -1,0 +1,15 @@
+model Invoice {
+  id               BigInt      @id @default(autoincrement())
+  consultationFees Decimal       @map("consultation_fees")
+  taxCharges       Decimal       @map("tax_charges")
+  taxRate          Decimal       @map("tax_rate")
+  totalAmount      Decimal       @map("total_amount")
+  paidBy           String      @default("SELF") @map("paid_by")
+  appointmentId    BigInt      @unique @map("appointment_id")
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  appointment      Appointment @relation(fields: [appointmentId], references: [id])
+  payment          Payment[]
+
+  @@map("invoice")
+}
