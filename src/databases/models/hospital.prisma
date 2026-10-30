@@ -1,0 +1,17 @@
+model Hospital {
+  id              BigInt        @id @default(autoincrement())
+  branchName      String        @map("branch_name")
+  photo           String?
+  isActive        Boolean       @default(true)
+  hospitalGroupId BigInt        @map("hospital_group_id")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  address         Address?
+  doctor          Doctor[]
+  hospitalGroup   HospitalGroup @relation(fields: [hospitalGroupId], references: [id])
+  appointment     Appointment[]
+  review          Review[]
+  staff           Staff[]
+
+  @@map("hospitals")
+}
