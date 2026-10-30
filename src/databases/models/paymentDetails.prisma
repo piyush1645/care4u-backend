@@ -1,0 +1,12 @@
+model PaymentDetails {
+  id            BigInt   @id @default(autoincrement())
+  transcationId String?  @map("transcation_id")
+  cardNumber    String?  @map("card_number")
+  upiId         String?  @map("upi_id")
+  paymentId     BigInt   @unique @map("payment_id")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  payment       Payment  @relation(fields: [paymentId], references: [id])
+
+  @@map("payment_details")
+}
