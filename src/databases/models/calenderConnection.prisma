@@ -1,0 +1,20 @@
+enum CalendarConnectionStatus {
+    CONNECTED
+    DISCONNECTED
+    REVOKED
+}
+
+model CalendarConnection {
+    id BigInt @id @default(autoincrement())
+    email String @unique
+    calendarId String
+    refreshToken String @db.Text
+    status CalendarConnectionStatus
+    doctorId BigInt @unique @map("doctor_id")
+    doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("calendar_connections")
+}
