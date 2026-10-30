@@ -1,0 +1,8 @@
+model TaxRate {
+    id BigInt @id @default(autoincrement())
+    country String
+    taxRate Decimal @map("tax_rate")
+
+    createdAt      DateTime       @default(now())
+    updatedAt      DateTime       @updatedAt
+}

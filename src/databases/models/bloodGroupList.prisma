@@ -1,0 +1,9 @@
+model BloodGroupList {
+    id BigInt @id @default(autoincrement())
+    bloodGroupName String @map("blood_group_name")
+
+    createdAt            DateTime           @default(now())
+    updatedAt            DateTime           @updatedAt
+
+    @@map("blooad_group_list")
+}

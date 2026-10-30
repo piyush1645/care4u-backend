@@ -12,20 +12,44 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tsx --watch src/index.ts",
+    "seed": "npx tsx src/common/helpers/seed/care4u.seed.ts",
+    "tax-seed": "npx tsx src/common/helpers/seed/tax.seed.ts",
+    "worker": "npx tsx src/common/helpers/workers/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.1.0",
     "@types/node": "^25.9.1",
+    "@types/pdfkit": "^0.17.6",
+    "dotenv": "^17.4.2",
     "prisma": "^7.8.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "@prisma/adapter-mariadb": "^7.8.0",
+    "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "argon2": "^0.44.0",
+    "axios": "^1.18.1",
+    "bullmq": "^5.79.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "googleapis": "^173.0.0",
+    "imagekit": "^6.0.0",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.3",
+    "mariadb": "^3.5.2",
+    "multer": "^2.1.1",
+    "pdfkit": "^0.19.1",
+    "pg": "^8.21.0",
+    "zod": "^4.4.3"
   }
 }

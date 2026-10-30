@@ -1,0 +1,32 @@
+enum MeetingStatus {
+    UPCOMING
+    COMPLETED
+    IN_PROGRESS
+}
+
+model Meeting {
+    id BigInt @id @default(autoincrement())
+
+    startTime DateTime @map("start_time")
+    startUrl String @db.Text @map("start_url")
+    joinUrl String @db.Text @map("join_url")
+    password String @map("meeting_password")
+    link String @unique @map("meeting_link")
+    status MeetingStatus @map("meeting_status") @default(UPCOMING)
+
+    appointmentId BigInt @unique @map("appointment_id")
+    appointment Appointment @relation(fields: [appointmentId], references: [id])
+
+    doctorId BigInt @map("doctor_id")
+    doctor Doctor @relation(fields: [doctorId], references: [id])
+
+    patientId BigInt @map("patient_id")
+    patient Patient @relation(fields: [patientId], references: [id])
+
+    createdAt            DateTime           @default(now())
+    updatedAt            DateTime           @updatedAt
+
+    meetingLogs MeetingLogs?
+
+    @@map("meetings")
+}

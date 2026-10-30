@@ -1,0 +1,10 @@
+model CourseList {
+    id BigInt @id @default(autoincrement())
+    courseName String @map("course_name")
+    courseAbbrevation String @map("course_abbrevation")
+
+    createdAt            DateTime           @default(now())
+    updatedAt            DateTime           @updatedAt
+
+    @@map("course_list")
+}
