@@ -1,0 +1,44 @@
+model Appointment {
+  id                   BigInt             @id @default(autoincrement())
+  referenceNumber      String             @unique @map("reference_number")
+  appointmentDate      DateTime           @map("appointment_date") @db.Date
+  appointmentStartTime DateTime           @map("appointment_start_time")
+  appointmentEndTime   DateTime           @map("appointment_end_time")
+  status               Appointment_Status @map("appointment_status")
+  type                 Appointment_Type   @map("appointment_type") @default(IN_PERSON)
+  bookedBy             ActionBy           @map("booked_by")
+  cancelledBy          ActionBy?          @map("cancelled_by")
+  googleCalendarEventId String? @map("google_calendar_event_id")
+  patientId            BigInt             @map("patient_id")
+  doctorId             BigInt             @map("doctor_id")
+  hospitalId           BigInt             @map("hospital_id")
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  billing              Invoice?
+  doctor               Doctor             @relation(fields: [doctorId], references: [id])
+  hospital             Hospital           @relation(fields: [hospitalId], references: [id])
+  patient              Patient            @relation(fields: [patientId], references: [id])
+  prescription         Prescription?
+  meeting Meeting?
+
+  @@map("patient_appointments")
+  // @@unique([doctorId,appointmentStartTime,appointmentDate])
+}
+
+enum Appointment_Status {
+  BOOKED
+  CANCELLED
+  RESCHEDULED
+  ON_GOING
+  NO_SHOW
+}
+
+enum ActionBy {
+  SELF
+  STAFF
+}
+
+enum Appointment_Type {
+  IN_PERSON
+  ONLINE
+}
