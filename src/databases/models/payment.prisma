@@ -1,0 +1,27 @@
+model Payment {
+  id             BigInt          @id @default(autoincrement())
+  amount         Decimal           @map("total_amount")
+  type           PaymentType     @map("payment_type")
+  status         PaymentStatus   @map("payment_status")
+  invoiceId      BigInt          @map("invoice_id")
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  paymentDetails PaymentDetails?
+  invoice        Invoice         @relation(fields: [invoiceId], references: [id])
+
+  @@map("payments")
+}
+
+enum PaymentType {
+  CARD
+  UPI
+  NET_BANKING
+  CASH
+  ADVANCE
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+  PENDING
+}
